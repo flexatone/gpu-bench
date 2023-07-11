@@ -58,3 +58,5 @@ def test_class():
 #   F_CONTIGUOUS : True
 #   OWNDATA : True
 
+
+# argsort is always stable

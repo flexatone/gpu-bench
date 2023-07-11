@@ -8,6 +8,7 @@ import math
 
 
 import numpy as np
+import cupy as cp
 import static_frame as sf
 import matplotlib.pyplot as plt
 
@@ -34,7 +35,7 @@ def seconds_to_display(seconds: float, number: int) -> str:
 
 
 def get_versions(number) -> str:
-    return f'Plots of duration (lower is faster) / OS: {platform.system()} / NumPy: {np.__version__} / Iterations: {number}\n'
+    return f'Plots of duration (lower is faster) / OS: {platform.system()} / NumPy: {np.__version__} / CuPy: {cp.__version__} / Iterations: {number}\n'
 
 def plot_performance(frame, *,
             number: int,
@@ -76,7 +77,7 @@ def plot_performance(frame, *,
             plot_title = f'{cat_label:.0e}\n{fixture_label}'
 
             ax.set_title(plot_title, fontsize=6)
-            ax.set_box_aspect(0.75) # makes taller tan wide
+            ax.set_box_aspect(0.4) # makes taller tan wide
 
             time_max = fixture["time"].max()
             time_min = fixture["time"].min()
@@ -92,7 +93,6 @@ def plot_performance(frame, *,
                 if len(y_ticks) == 1:
                     y_ticks = [time_min * 2, time_max]
                 ax.set_yticks(y_ticks)
-                print(plot_title, y_ticks)
             else:
                 y_ticks = [0, time_min, time_max * 0.5, time_max]
                 y_labels = [
