@@ -1,5 +1,5 @@
 numpy==1.23.5
 pytest==7.4.0
 static-frame==1.4.6
-matplotlib==3.7.2
+matplotlib==3.7.1
 

@@ -72,15 +72,11 @@ def plot_performance(frame, *,
             x_tick_labels = [str(l + 1) for l in range(len(x_labels))]
             x = np.arange(len(results))
             x_bar = ax.bar(x_labels, results, color=color)
-
-
-            density, position = fixture_label.split('-')
             # cat_label is the size of the array
-            plot_title = f'{cat_label:.0e}\n{density}\n{position}'
+            plot_title = f'{cat_label:.0e}\n{fixture_label}'
 
             ax.set_title(plot_title, fontsize=6)
             ax.set_box_aspect(0.75) # makes taller tan wide
-
 
             time_max = fixture["time"].max()
             time_min = fixture["time"].min()
@@ -93,7 +89,10 @@ def plot_performance(frame, *,
                         math.floor(math.log(time_max, 10)) + 1,
                         ):
                     y_ticks.append(1 * pow(10, v))
+                if len(y_ticks) == 1:
+                    y_ticks = [time_min * 2, time_max]
                 ax.set_yticks(y_ticks)
+                print(plot_title, y_ticks)
             else:
                 y_ticks = [0, time_min, time_max * 0.5, time_max]
                 y_labels = [
@@ -116,6 +115,7 @@ def plot_performance(frame, *,
                 pad=1,
                 labelsize=4,
             )
+
             ax.set_xticks(x)
             ax.set_xticklabels(x_tick_labels)
             ax.tick_params(
@@ -127,6 +127,7 @@ def plot_performance(frame, *,
             )
 
     fig.set_size_inches(6, 3.5) # width, height
+    fig.set_facecolor('#d5d0ce')
 
     fig.legend(x_bar, x_labels, loc='center right', fontsize=4)
     # fig.legend(post, names_display, loc='center right', fontsize=8)
