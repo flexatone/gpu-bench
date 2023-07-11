@@ -47,7 +47,7 @@ def test_class():
     assert np.array([3, 2]).__class__ != cp.array([3, 2]).__class__
 
 
-    import ipdb; ipdb.set_trace()
+    # import ipdb; ipdb.set_trace()
 
 # hit a memory limit...
 # ipdb> np.empty((100000, 100000))
