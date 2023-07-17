@@ -4,7 +4,7 @@
 % sudo apt install nvidia-cuda-toolkit
 
 // got driverr installed where UI failed
-% sudo apt install nvidia-driver-510 nvidia-dkms-510
+% sudo apt install nvidia-driver-510 nvidia-dkms-510 nvidia-utils-510
 
 
 
