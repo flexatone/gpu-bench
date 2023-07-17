@@ -18,3 +18,4 @@ Cuda compilation tools, release 10.1, V10.1.243
 
 % pip3 install cupy-cuda101
 % pip3 install cupy-cuda116
+% pip3 install cupy-cuda114
