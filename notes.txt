@@ -24,3 +24,43 @@ Cuda compilation tools, release 10.1, V10.1.243
 % pip3 install cupy-cuda101
 % pip3 install cupy-cuda116
 % pip3 install cupy-cuda114
+
+
+# GPU Libaries, Python Development
+
+CuPy
+CuDF
+PyTorch
+
+Because CuPy is built for different GPU, package requirements are different per hardward
+No free CI
+No MacOS!
+
+
+# CuPy
+
+Not developed by NVIDIA
+Already has ROCM version available
+Implements subset of NumPy API
+Does NumPy-like data viewing
+Does not support all flags (includying writeable!)
+
+
+# HyRay
+
+Fall back on CuPy
+Not available GPU
+Out of memory
+Unsupported dtype
+
+
+
+
+
+
+
+
+
+
+
+
