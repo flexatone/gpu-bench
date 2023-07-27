@@ -23,25 +23,49 @@ class ArrayProcessorCP(ArrayProcessor):
 #-------------------------------------------------------------------------------
 
 class APScaleNP(ArrayProcessor):
-    NAME = 'scale-np'
+    NAME = 'scale1x-np'
     SORT = 0
 
     def __call__(self):
         self.array * 100.0
 
 class APScaleCP(ArrayProcessorCP):
-    NAME = 'scale-cp'
+    NAME = 'scale1x-cp'
     SORT = 0
 
     def __call__(self):
         self.array * 100.0
 
 class APScaleNPCP(ArrayProcessor):
-    NAME = 'scale-np-cp'
+    NAME = 'scale1x-np-cp'
     SORT = 0
 
     def __call__(self):
         cp.array(self.array) * 100.0
+
+
+
+class APScale4xNP(ArrayProcessor):
+    NAME = 'scale4x-np'
+    SORT = 0
+
+    def __call__(self):
+        self.array * 100.0 * 0.5 * 4 * 0.1
+
+class APScale4xCP(ArrayProcessorCP):
+    NAME = 'scale4x-cp'
+    SORT = 0
+
+    def __call__(self):
+        self.array * 100.0 * 0.5 * 4 * 0.1
+
+class APScale4xNPCP(ArrayProcessor):
+    NAME = 'scale4x-np-cp'
+    SORT = 0
+
+    def __call__(self):
+        cp.array(self.array) * 100.0 * 0.5 * 4 * 0.1
+
 
 
 
@@ -172,13 +196,20 @@ class FFBool(FixtureFactory):
         return (np.arange(size) % 3).astype(bool)
 
 
-CLS_PROCESSOR = (
+CLS_MATH = (
     APScaleNP,
     APScaleCP,
     APScaleNPCP,
+    APScale4xNP,
+    APScale4xCP,
+    APScale4xNPCP,
     APSumNP,
     APSumCP,
     APSumNPCP,
+    )
+
+
+CLS_SELECT = (
     APSelectNP,
     APSelectCP,
     APSelectNPCP,
@@ -189,6 +220,7 @@ CLS_PROCESSOR = (
     APArgsortCP,
     APArgsortNPCP,
     )
+
 
 CLS_FF = (
     FFInt64,
@@ -204,14 +236,18 @@ if __name__ == '__main__':
     directory = Path('doc/')
 
     for fn, title, processors in (
-        ('fig-0.png', 'Performance (Log Scale)', CLS_PROCESSOR),
+        ('fig-0.png', 'Math (Log Scale)', CLS_MATH),
+        ('fig-1.png', 'Math (Linear Scale)', CLS_MATH),
+        ('fig-2.png', 'Selection (Log Scale)', CLS_SELECT),
+        ('fig-3.png', 'Selection (Linear Scale)', CLS_SELECT),
+
     ):
         run_test(sizes=SIZES,
                 fixtures=CLS_FF,
                 processors=processors,
                 fp=directory / fn,
                 title=title,
-                number=10,
+                number=100,
                 )
 
 

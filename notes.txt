@@ -1,12 +1,17 @@
 
 
+
+
+# GPU Setup on Linux
+
+// You might have Nvidia GPU but not have CUDA b/c you are using X.org Nouveau Driver!
+// Some systems have a hybrid mode that only uses GPU when needed
+
 // not sure this is necessary
 % sudo apt install nvidia-cuda-toolkit
 
-// got driverr installed where UI failed
+// got driver installed where UI failed
 % sudo apt install nvidia-driver-510 nvidia-dkms-510 nvidia-utils-510
-
-
 
 % nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
